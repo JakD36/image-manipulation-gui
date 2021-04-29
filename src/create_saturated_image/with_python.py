@@ -15,6 +15,6 @@ def create(img: np.array) -> np.array:
             rgb = img[y,x]
             hsl = rgb_to_hsl_255(rgb)
 
-            img_sat[y, x] = [*channel_to_3(hsl[1]), 255]
+            img_sat[y, x] = [*channel_to_3(hsl[2]), 255]
 
     return img_sat
