@@ -92,11 +92,10 @@ class MainWindow(QtWidgets.QWidget):
             arr = qt_utils.qt_image_to_array(image)
             sat_img_arr = image_processor.create(arr)
 
-            self.saturated_image = QImage(sat_img_arr.copy().data, sat_img_arr.shape[1], sat_img_arr.shape[0], sat_img_arr.strides[0], QImage.Format_RGBA8888)
+            self.saturated_image = QImage(sat_img_arr.data, sat_img_arr.shape[1], sat_img_arr.shape[0], sat_img_arr.strides[0], QImage.Format_RGBA8888).copy()
             # Display saturated image
-            pixmap2 = QPixmap.fromImage(self.saturated_image) \
-                .scaled(self.size().width() / 2, self.size().height()/2, QtCore.Qt.KeepAspectRatio,
-                        QtCore.Qt.FastTransformation)
+            pixmap2 = QPixmap(self.saturated_image)
+            pixmap2 = pixmap2.scaled(self.size().width() / 2, self.size().height()/2, QtCore.Qt.KeepAspectRatio, QtCore.Qt.FastTransformation)
             self.out_img_lbl.setPixmap(pixmap2)
 
             plot_saturation.create_single_channel_histogram(sat_img_arr, self.ax)
