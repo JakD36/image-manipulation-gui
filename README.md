@@ -5,9 +5,9 @@ pip install -r requirements.txt
 ```
 
 # Create Standalone Application
-
+from the project root directory.
 ```bash
-pyinstaller main.py --onefile -w --name CreateSatImages  
+pyinstaller src/main.py --onefile -w --name CreateSatImages  
 ```
 Options:
 
